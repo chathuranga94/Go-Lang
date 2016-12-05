@@ -1,0 +1,17 @@
+package main
+
+import (
+    "fmt"
+    "net/http"
+)
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi there, HTTP Server Running... I love %s!", r.URL.Path[1:])
+}
+
+func main() {
+    fmt.Println("Server running localhost:8080 ")
+    
+    http.HandleFunc("/", handler)
+    http.ListenAndServe(":8080", nil)
+}
