@@ -9,11 +9,12 @@ import (
   
 var people []Person
 
- 
-func main() {
+func init(){
     people = append(people, Person{ID: "1", Firstname: "Nic", Lastname: "Raboy", Address: &Address{City: "Dublin", State: "CA"}})
     people = append(people, Person{ID: "2", Firstname: "Maria", Lastname: "Raboy"})
-    
+}
+ 
+func main() {    
     router := mux.NewRouter()
     router.HandleFunc("/people", GetPeopleEndpoint).Methods("GET")
     router.HandleFunc("/people/{id}", GetPersonEndpoint).Methods("GET")
